@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Frontend conectado al backend</h1>
+  <p id="texto"></p>
+
+  <script>
+    fetch("/api/saludo")
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById("texto").innerText = data.mensaje;
+      });
+  </script>
+</body>
+</html>

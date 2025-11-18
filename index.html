@@ -1,15 +1,344 @@
 <!DOCTYPE html>
-<html>
-<body>
-  <h1>Frontend conectado al backend</h1>
-  <p id="texto"></p>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Enciclopedia del Mundo de One Piece</title>
 
-  <script>
-    fetch("/api/saludo")
-      .then(r => r.json())
-      .then(data => {
-        document.getElementById("texto").innerText = data.mensaje;
-      });
-  </script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Trebuchet MS', sans-serif;
+      background: linear-gradient(to bottom, #0a0f1d, #1b2540);
+      color: #e6e6e6;
+    }
+
+    header {
+      background: #10182e;
+      padding: 30px;
+      text-align: center;
+      border-bottom: 3px solid #2e3d67;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.7rem;
+      letter-spacing: 1px;
+      color: #79a3ff;
+    }
+
+    nav {
+      text-align: center;
+      padding: 15px;
+      background: #141d33;
+      border-bottom: 2px solid #2e3d67;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: #c5d3ff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    section {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #84b3ff;
+      margin-top: 40px;
+      border-bottom: 2px solid #2e3d67;
+      padding-bottom: 8px;
+    }
+
+    .card {
+      background: #141d2b;
+      border: 1px solid #2e3d67;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.015);
+    }
+
+    .easter {
+      cursor: pointer;
+      text-decoration: underline;
+      color: #ffd778;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #10182e;
+      margin-top: 40px;
+      color: #9faed1;
+    }
+
+    .power-level {
+      background: #1a2644;
+      padding: 12px;
+      border-left: 5px solid #79a3ff;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+
+    /* Botón secreto */
+    #secretButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1a2644;
+      color: #c5d3ff;
+      border: 1px solid #2e3d67;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      opacity: 0.3;
+      transition: opacity 0.3s;
+    }
+
+    #secretButton:hover {
+      opacity: 1;
+    }
+
+    #powerScanner {
+      display: none;
+      background: #0d1326;
+      padding: 20px;
+      border: 2px solid #385494;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 30px auto;
+    }
+
+    #scanOutput {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #b8c8ff;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Enciclopedia del Mundo de One Piece</h1>
+  <p id="saludo">Conectando con el backend...</p>
+</header>
+
+<nav>
+  <a href="#yonkou">Yonkou</a>
+  <a href="#marina">Marina</a>
+  <a href="#gobierno">Gobierno Mundial</a>
+  <a href="#tripulaciones">Tripulaciones</a>
+  <a href="#datos">Datos Curiosos</a>
+</nav>
+
+<section id="yonkou">
+  <h2>Yonkou</h2>
+
+  <div class="card">
+    <h3>Shanks</h3>
+    <p>Líder de los Piratas del Pelirrojo. Un capitán con un estilo de combate basado en espada y un dominio excepcional del Haki.</p>
+
+    <strong>Estilos de pelea:</strong>
+    <ul>
+      <li>Espadachín Maestro</li>
+      <li>Haki del Rey Avanzado</li>
+      <li>Haki de Observación extremadamente afinado</li>
+    </ul>
+
+    <div class="power-level">
+      <strong>Nivel de Poder:</strong> 97/100
+    </div>
+
+    <p class="easter" onclick="reveal('secretShanks')">Mostrar dato oculto...</p>
+    <div id="secretShanks" class="hidden">
+      <em>Shanks es uno de los pocos personajes que puede detener una guerra simplemente llegando.</em>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Big Mom</h3>
+    <p>Capitana de los Piratas de Big Mom. Gran usuaria de poderes de almas y fuerza física inmensa.</p>
+
+    <strong>Estilos de pelea:</strong>
+    <ul>
+      <li>Control de almas</li>
+      <li>Poder físico brutal</li>
+      <li>Armas vivientes (Napoleón, Zeus, Prometheus)</li>
+    </ul>
+
+    <div class="power-level">
+      <strong>Nivel de Poder:</strong> 94/100
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Barbanegra</h3>
+    <p>El único usuario de dos poderes distintos, con enorme ambición.</p>
+
+    <strong>Estilos de pelea:</strong>
+    <ul>
+      <li>Poder de la oscuridad</li>
+      <li>Poder sísmico</li>
+      <li>Alta resistencia</li>
+    </ul>
+
+    <div class="power-level">
+      <strong>Nivel de Poder:</strong> 96/100
+    </div>
+  </div>
+
+</section>
+
+<section id="marina">
+  <h2>Marina</h2>
+
+  <div class="card">
+    <h3>Almirantes</h3>
+
+    <ul>
+      <li>Akainu — estilo magma</li>
+      <li>Aokiji — estilo hielo</li>
+      <li>Kizaru — combate con luz</li>
+      <li>Fujitora — gravedad</li>
+    </ul>
+
+    <div class="power-level">
+      <strong>Nivel promedio de Poder:</strong> 92/100
+    </div>
+  </div>
+
+</section>
+
+<section id="gobierno">
+  <h2>Gobierno Mundial</h2>
+
+  <div class="card">
+    <h3>Gorosei</h3>
+    <p>Consejo supremo, guardianes de secretos globales.</p>
+  </div>
+
+  <div class="card">
+    <h3>CP0</h3>
+    <p>La fuerza encubierta más letal del Gobierno.</p>
+    <div class="power-level"><strong>Nivel de Poder:</strong> 85/100</div>
+  </div>
+
+</section>
+
+<section id="tripulaciones">
+  <h2>Tripulaciones Destacadas</h2>
+
+  <div class="card">
+    <h3>Piratas del Sombrero de Paja</h3>
+    <ul>
+      <li>Luffy — Haki avanzado, Gear Fifth</li>
+      <li>Zoro — Estilo de tres espadas</li>
+      <li>Sanji — Patadas potenciadas, fuego</li>
+      <li>Jinbe — Karate Gyojin</li>
+      <li>Robin — Estilo "Clutch"</li>
+      <li>Franky — Cyborg avanzado</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Piratas de Barbanegra</h3>
+    <ul>
+      <li>Teach — oscuridad y terremotos</li>
+      <li>Shiryu — espadachín sigiloso</li>
+      <li>Van Augur — francotirador espacial</li>
+      <li>Jesus Burgess — fuerza bruta</li>
+    </ul>
+  </div>
+
+</section>
+
+<section id="datos">
+  <h2>Datos Curiosos</h2>
+
+  <div class="card">
+    <ul>
+      <li>Zoro casi nunca sabe dónde está.</li>
+      <li>El Gobierno Mundial oculta 800 años de historia perdida.</li>
+      <li>El mar está lleno de islas imposibles con climas extremos.</li>
+      <li>Las recompensas no miden fuerza, sino peligro político.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- BOTÓN SECRETO -->
+<button id="secretButton" onclick="toggleScanner()">?</button>
+
+<!-- SCANNER DE PODER -->
+<div id="powerScanner">
+  <h3>Power Scanner</h3>
+  <p>Escribe el nombre de un personaje para analizar su nivel estimado:</p>
+  <input type="text" id="scanInput" placeholder="Ej: Luffy" style="width:100%; padding:10px;">
+  <button style="margin-top:10px; padding:10px;" onclick="scanPower()">Analizar</button>
+
+  <p id="scanOutput"></p>
+</div>
+
+<footer>
+  Enciclopedia creada para fines informativos y de entretenimiento.
+</footer>
+
+<script>
+  // Backend
+  fetch("/api/saludo")
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById("saludo").innerText = data.mensaje;
+    })
+    .catch(() => {
+      document.getElementById("saludo").innerText = "No se pudo conectar al backend.";
+    });
+
+  // Easter eggs
+  function reveal(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle("hidden");
+  }
+
+  // Scanner secreto
+  function toggleScanner() {
+    const scanner = document.getElementById("powerScanner");
+    scanner.style.display = scanner.style.display === "block" ? "none" : "block";
+  }
+
+  function scanPower() {
+    const name = document.getElementById("scanInput").value.toLowerCase();
+    const output = document.getElementById("scanOutput");
+
+    const db = {
+      "luffy": "98/100 — Dominio avanzado de Haki y Gear Fifth.",
+      "zoro": "95/100 — Espadachín casi al nivel de los mejores del mundo.",
+      "sanji": "92/100 — Estilo de patadas con habilidades especiales.",
+      "shanks": "97/100 — Maestro absoluto del Haki.",
+      "barbanegra": "96/100 — Dos poderes extremadamente destructivos.",
+      "akainu": "94/100 — Estilo Magma avanzado."
+    };
+
+    output.innerText = db[name] || "No se encontró información del personaje.";
+  }
+</script>
+
 </body>
 </html>
